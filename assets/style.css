@@ -1,4 +1,14 @@
+body{
+    width: 100%;
+    height: 100%;
+}
+
 .navbar-center {
     width: 100%;
     text-align: center;
+}
+
+#searchCol{
+    background: rgb(230, 240, 245);
+    height: calc(100vh - 72px);
 }
