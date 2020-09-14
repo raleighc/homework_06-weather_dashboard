@@ -17,25 +17,34 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-      <header>
-        <nav class="navbar navbar-dark bg-dark">
-            <span class="navbar-center text-white h1">Weather Dashboard</span>
-          </nav>
-      </header>
-      <main class="container">
-          <div class="row">
-            <div class="col-sm-4" id="searchCol">Search by City</div>
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-sm-12">Currently searched CITY</div>
-                    <div class="col-sm-12">5 day forecast.</div>
-                </div>
+    <header>
+      <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-center text-white h1">Weather Dashboard</span>
+      </nav>
+    </header>
+    <main class="container">
+      <div class="row">
+        <div class="col-sm-4" id="searchCol">
+          <h5>Search for a City:</h5>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="button-addon2"/>
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-outline-secondary" id="button-addon2"><i class="fa fa-search"></i></button>
             </div>
           </div>
-      </main>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-12">Currently searched CITY</div>
+            <div class="col-sm-12">5 day forecast.</div>
+          </div>
+        </div>
+      </div>
+    </main>
     <script src="./assets/script.js" async defer></script>
   </body>
 </html>
