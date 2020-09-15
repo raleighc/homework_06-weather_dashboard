@@ -11,8 +11,11 @@ body{
 #searchCol{
     background: rgb(230, 240, 245);
     height: calc(100vh - 72px);
+    padding-top: 15px;
 }
-
+.card{
+    margin-top: 15px;
+}
 #low{
     background-color: lime;
     width: 100%;
@@ -40,7 +43,11 @@ body{
     float: left;
     margin: 5px 20px 0px 0px;
     padding: 0px;
+    width: auto;
 }
 p{
     font-size: 12px;
+}
+.searchItem{
+    text-transform: capitalize;
 }
