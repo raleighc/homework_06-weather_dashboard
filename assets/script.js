@@ -20,8 +20,8 @@ $(document).ready(function () {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    console.log(queryURL);
-    console.log(response);
+    // console.log(queryURL);
+    // console.log(response);
 
     // Drilling for specific info located in the API
     $("#currentCity").text(response.name + "  -  " + "(" + dateTime + ")");
@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     var lon = response.coord.lon;
     var lat = response.coord.lat;
-    var queryURLuv = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon;
+    var queryURLuv = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon + "&units=imperial";
     // AJAX call for UV info only
     $.ajax({
       url: queryURLuv,
@@ -39,20 +39,53 @@ $(document).ready(function () {
     }).then(function (response) {
       var UVIndex = response.value;
       var spanUV = $("<span>").addClass("UVColored").text(UVIndex);
-      // console.log(currentUVEl);
+      console.log(UVIndex);
+      console.log(spanUV);
     $("#currentUV").text("UV Index:  ").append(spanUV);
-    if (UVIndex <= 2){
+    if (UVIndex < 3){
       spanUV.attr("id", "low")
-    } else if (UVIndex >= 3 && UVIndex <= 5){
+    } else if (UVIndex > 2 && UVIndex < 6){
       spanUV.attr("id", "med")
-    } else if (UVIndex >= 6 && UVIndex <= 7){
+    } else if (UVIndex > 5 && UVIndex < 8){
       spanUV.attr("id", "high")
-    } else if (UVIndex >= 8 && UVIndex <= 10){
+    } else if (UVIndex > 7 && UVIndex < 11){
       spanUV.attr("id", "veryHigh")
-    } else if (UVIndex >= 11){
+    } else if (UVIndex > 10){
       spanUV.attr("id", "extremelyHigh")
     }
   });
+  var cityID = response.id;
+  var queryURLFiveDay = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + APIKey + "&units=imperial";
+
+  $.ajax({
+    url: queryURLFiveDay,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+    // console.log(queryURLFiveDay);
+    var days = [1, 2, 3, 4, 5]
+    
+    for (var i = 1; i < 6; i++) {
+      // console.log([i]);
+    var dayIcon = response.list[i].weather[0].icon;
+
+    var forecastCard = $("<div>").addClass("col-sm-2 card shadow p-3 mb-5 rounded forecast");
+    var datePlus = moment().add(i, "days").format("MM/DD/YYYY");
+    var foreDate = $("<h7>").text(datePlus);
+    var foreIcon = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + dayIcon + "@2x.png");
+    var foreTemp = $("<p>").text(Math.floor(response.list[i].main.temp) + " °F");
+    var foreHumid = $("<p>").text("Humidity:" + response.list[i].main.humidity + "%");
+
+    $("#fiveDay").append(forecastCard);
+    $(".forecast").append(foreDate);
+    $(".forecast").append(foreIcon);
+    $(".forecast").append(foreTemp);
+    $(".forecast").append(foreHumid);
+    }
+    
+    
+  });
+  
   });
 
   });

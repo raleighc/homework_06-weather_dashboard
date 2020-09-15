@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html class="no-js">
-  
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,7 +13,10 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
@@ -28,11 +30,22 @@
         <div class="col-sm-4" id="searchCol">
           <h5>Search for a City:</h5>
           <div class="input-group mb-3">
-            <input type="text" id="searchText" class="form-control" placeholder="search" aria-label="search"/>
+            <input
+              type="text"
+              id="searchText"
+              class="form-control"
+              placeholder="search"
+              aria-label="search"
+            />
             <div class="input-group-append">
-              <button type="submit" class="btn btn-outline-secondary" id="searchBtn"><i class="fa fa-search"></i></button>
+              <button
+                type="submit"
+                class="btn btn-outline-secondary"
+                id="searchBtn"
+              >
+                <i class="fa fa-search"></i>
+              </button>
             </div>
-            
           </div>
           <div id="searchHistory"></div>
         </div>
@@ -41,15 +54,22 @@
             <div class="col-sm-12">
               <div class="card">
                 <div class="card-body">
-                  <h3 id="currentCity">Curious what the weather looks like somewhere?</h3>
+                  <h3 id="currentCity">
+                    Curious what the weather looks like somewhere?
+                  </h3>
                   <div id="currentTemp"></div>
                   <div id="currentHumid"></div>
                   <div id="currentWind"></div>
-                  <div id="currentUV"><span class="UVColored"> does it show here?</span></div>
+                  <div id="currentUV">
+                    <span class="UVColored"> does it show here?</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-sm-12">5 day forecast.</div>
+            <div class="col-sm-12">
+              5-day Forecast:
+              <div id="fiveDay"></div>
+            </div>
           </div>
         </div>
       </div>
