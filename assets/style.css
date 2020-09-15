@@ -12,3 +12,24 @@ body{
     background: rgb(230, 240, 245);
     height: calc(100vh - 72px);
 }
+
+#low{
+    background-color: lime;
+    width: 100%;
+}
+#med{
+    background-color: yellow;
+    width: 100%;
+}
+#high{
+    background-color: orange;
+    width: 100%;
+}
+#veryHigh{
+    background-color: red;
+    width: 100%;
+}
+#extremelyHigh{
+    background-color: purple;
+    width: 100%; 
+}
