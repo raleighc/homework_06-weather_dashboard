@@ -31,20 +31,33 @@
         <div class="col-sm-4" id="searchCol">
           <h5>Search for a City:</h5>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="button-addon2"/>
+            <input type="text" id="searchText" class="form-control" placeholder="search" aria-label="search"/>
             <div class="input-group-append">
-              <button type="submit" class="btn btn-outline-secondary" id="button-addon2"><i class="fa fa-search"></i></button>
+              <button type="submit" class="btn btn-outline-secondary" id="searchBtn"><i class="fa fa-search"></i></button>
             </div>
+            
           </div>
+          <div id="searchHistory"></div>
         </div>
         <div class="col-sm-8">
           <div class="row">
-            <div class="col-sm-12">Currently searched CITY</div>
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h3 id="currentCity"></h3>
+                  <p id="currentTemp"></p>
+                  <p id="currentHumid"></p>
+                  <p id="currentWind"></p>
+                  <p id="currentUV"></p>
+                </div>
+              </div>
+            </div>
             <div class="col-sm-12">5 day forecast.</div>
           </div>
         </div>
       </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/script.js" async defer></script>
   </body>
 </html>
