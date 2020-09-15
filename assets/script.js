@@ -2,46 +2,28 @@ console.log("Hello Twitter World");
 // Checks to make sure entire document is loaded before jQuery fires.
 $(document).ready(function () {
   var dateTime = moment().format("MM/DD/YYYY");
-
   // onClick function that listens for City search submission.
   $("#searchBtn").on("click", function () {
     var cityName = $("#searchText").val();
+    
     // This is my API Key
     var APIKey = "f074459fc12a2702e389a5a7750c8cbb";
     // URL we need to query the database
-    var queryURL =
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-      cityName +
-      "&appid=" +
-      APIKey +
-      "&units=imperial";
-
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey + "&units=imperial";
     // AJAX call to pull information from weather API
     $.ajax({
       url: queryURL,
       method: "GET",
     }).then(function (response) {
-      // console.log(queryURL);
-      // console.log(response);
-
       // Drilling for specific info located in the API
       $("#currentCity").text(response.name + "  -  " + "(" + dateTime + ")");
-      $("#currentTemp").text(
-        "Temperature:  " + Math.floor(response.main.temp) + " °F"
-      );
+      $("#currentTemp").text("Temperature:  " + Math.floor(response.main.temp) + " °F");
       $("#currentHumid").text("Humidity:  " + response.main.humidity + "%");
       $("#currentWind").text("Wind Speed:  " + response.wind.speed + " mph");
 
       var lon = response.coord.lon;
       var lat = response.coord.lat;
-      var queryURLuv =
-        "https://api.openweathermap.org/data/2.5/uvi?appid=" +
-        APIKey +
-        "&lat=" +
-        lat +
-        "&lon=" +
-        lon +
-        "&units=imperial";
+      var queryURLuv = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon + "&units=imperial";
       // AJAX call for UV info only
       $.ajax({
         url: queryURLuv,
@@ -52,6 +34,7 @@ $(document).ready(function () {
         console.log(UVIndex);
         console.log(spanUV);
         $("#currentUV").text("UV Index:  ").append(spanUV);
+        // Conditionals that apply UV Index background color.
         if (UVIndex < 3) {
           spanUV.attr("id", "low");
         } else if (UVIndex > 2 && UVIndex < 6) {
@@ -64,25 +47,22 @@ $(document).ready(function () {
           spanUV.attr("id", "extremelyHigh");
         }
       });
+      // AJAX call pulling 5 day forecast info from API
       var cityID = response.id;
-      var queryURLFiveDay =
-        "https://api.openweathermap.org/data/2.5/forecast?id=" +
-        cityID +
-        "&appid=" +
-        APIKey +
-        "&units=imperial";
+      var queryURLFiveDay = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + APIKey + "&units=imperial";
 
       $.ajax({
         url: queryURLFiveDay,
         method: "GET",
       }).then(function (response) {
         console.log(response);
-        // console.log(queryURLFiveDay);
-        var forecastID = [0, 1, 2, 3, 4, 5];
         
+        // For loop that generates and appends weather cards onto page.
+        var forecastID = [0, 1, 2, 3, 4, 5];
+        $("#fiveDayTitle").prepend("5-day Forecast:");
         for (var i = 1; i < 6; i++) {
-          // console.log([i]);
-          var dayIcon = response.list[i].weather[0].icon;
+          console.log([i * 8 - 1]);
+          var dayIcon = response.list[i * 8 - 1].weather[0].icon;
 
           var forecastCard = $("<div>").addClass(
             "col-sm-2 card shadow p-3 mb-5 rounded forecast" + forecastID[i]
@@ -94,18 +74,16 @@ $(document).ready(function () {
             "http://openweathermap.org/img/wn/" + dayIcon + "@2x.png"
           );
           var foreTemp = $("<p>").text(
-            Math.floor(response.list[i].main.temp) + " °F"
+            Math.floor(response.list[i * 8 - 1].main.temp) + " °F"
           );
           var foreHumid = $("<p>").text(
-            "Humidity:" + response.list[i].main.humidity + "%"
+            "Humidity:" + response.list[i * 8 - 1].main.humidity + "%"
           );
 
           $("#fiveDay").append(forecastCard);
-          $(".forecast" + forecastID[i]).append(foreDate);
-          $(".forecast" + forecastID[i]).append(foreIcon);
-          $(".forecast" + forecastID[i]).append(foreTemp);
-          $(".forecast" + forecastID[i]).append(foreHumid);
+          $(".forecast" + forecastID[i]).append(foreDate, foreIcon, foreTemp, foreHumid);
         }
+        
       });
     });
   });
