@@ -34,7 +34,7 @@ body{
     width: 100%; 
 }
 
-.forecast{
+.forecast1, .forecast2, .forecast3, .forecast4, .forecast5{
     background: rgb(124, 203, 240);
     color: white;
     float: left;
