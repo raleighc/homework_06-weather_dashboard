@@ -7,7 +7,7 @@ $(document).ready(function () {
     historyEl.html("");
     for (var i = 0; i < historyList.length; i++) {
       var historyBtn = $("<button>")
-        .addClass("searchItem")
+        .addClass("searchItem btn btn-light col-sm-12")
         .text(historyList[i]);
       historyBtn.on("click", function (event) {
         // console.log(event.target.innerText);
@@ -93,8 +93,8 @@ $(document).ready(function () {
         // For loop that generates and appends weather cards onto page.
         var forecastID = [0, 1, 2, 3, 4, 5];
         $("#fiveDay").html("");
-        $("#fiveDayTitle").prepend("");
-        $("#fiveDayTitle").prepend("5-day Forecast:");
+        $("#fiveDayTitle").html("");
+        $("#fiveDayTitle").append("5-day Forecast:");
 
         for (var i = 1; i < 6; i++) {
           var dayIcon = response.list[i * 8 - 1].weather[0].icon;

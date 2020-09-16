@@ -11,10 +11,14 @@ body{
 #searchCol{
     background: rgb(230, 240, 245);
     height: calc(100vh - 72px);
-    padding-top: 15px;
+    padding: 15px;
+}
+.searchItem{
+    margin-top: 10px;
 }
 .card{
     margin-top: 15px;
+    display: flex;
 }
 #low{
     background-color: lime;
@@ -36,14 +40,16 @@ body{
     background-color: purple;
     width: 100%; 
 }
-
+#fiveDayTitle{
+    padding-top: 10px;
+}
 .forecast1, .forecast2, .forecast3, .forecast4, .forecast5{
     background: rgb(124, 203, 240);
     color: white;
     float: left;
     margin: 5px 20px 0px 0px;
     padding: 0px;
-    width: auto;
+    width: 100%;
 }
 p{
     font-size: 12px;
