@@ -1,26 +1,32 @@
 // Checks to make sure entire document is loaded before jQuery fires.
 $(document).ready(function () {
+  // Momentjs current date.
   var dateTime = moment().format("MM/DD/YYYY");
+  // variable populated history list with past searches or empty array.
   var historyList = JSON.parse(localStorage.getItem("historyList")) || [];
+  // Function populated recent searches into a list using an for loop
   function displayRecentList() {
     var historyEl = $("#searchHistory");
     historyEl.html("");
     for (var i = 0; i < historyList.length; i++) {
+      // generates button of each search
       var historyBtn = $("<button>")
         .addClass("searchItem btn btn-light col-sm-12")
         .text(historyList[i]);
+      // On click of each button is calls the search button function again.
       historyBtn.on("click", function (event) {
-        // console.log(event.target.innerText);
         getCurrentWeather(event.target.innerText);
       });
       historyEl.append(historyBtn);
     }
   }
   displayRecentList();
-
+  // On click of search button, this function is triggered beginning all of the ajax calls to pull API data into my html skeleton.
   function getCurrentWeather(cityName) {
+    // Search inputs are set to lower case to prevent duplicate buttons.
     if (historyList.indexOf(cityName.toLowerCase()) === -1) {
       historyList.push(cityName.toLowerCase());
+      // Search info is stored in local storage.
       localStorage.setItem("historyList", JSON.stringify(historyList));
       displayRecentList();
     }
@@ -38,14 +44,24 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET",
     }).then(function (response) {
+      console.log(response);
+      var currentIcon = $("<img>").attr(
+        "src",
+        "http://openweathermap.org/img/wn/" +
+          response.weather[0].icon +
+          "@2x.png"
+      );
+      console.log(currentIcon);
       // Drilling for specific info located in the API
-      $("#currentCity").text(response.name + "  -  " + "(" + dateTime + ")");
+      $("#currentCity")
+        .text(response.name + "  -  " + "(" + dateTime + ") ")
+        .append(currentIcon);
       $("#currentTemp").text(
         "Temperature:  " + Math.floor(response.main.temp) + " °F"
       );
       $("#currentHumid").text("Humidity:  " + response.main.humidity + "%");
       $("#currentWind").text("Wind Speed:  " + response.wind.speed + " mph");
-
+      // pulling information needed to create the UV Index URL.
       var lon = response.coord.lon;
       var lat = response.coord.lat;
       var queryURLuv =
@@ -90,17 +106,17 @@ $(document).ready(function () {
         url: queryURLFiveDay,
         method: "GET",
       }).then(function (response) {
-        // For loop that generates and appends weather cards onto page.
+        // array for populating unique card classes upon generation.
         var forecastID = [0, 1, 2, 3, 4, 5];
         $("#fiveDay").html("");
         $("#fiveDayTitle").html("");
         $("#fiveDayTitle").append("5-day Forecast:");
-
+        // For loop that generates and appends weather cards onto page.
         for (var i = 1; i < 6; i++) {
           var dayIcon = response.list[i * 8 - 1].weather[0].icon;
-
+          // manipulating the DOM to generate html and assign css classes to cards.
           var forecastCard = $("<div>").addClass(
-            "col-sm-2 card shadow p-3 mb-5 rounded forecast" + forecastID[i]
+            "col-lg-2 card shadow p-3 mb-5 rounded forecast" + forecastID[i]
           );
           var datePlus = moment().add(i, "days").format("MM/DD/YYYY");
           var foreDate = $("<h7>").text(datePlus);

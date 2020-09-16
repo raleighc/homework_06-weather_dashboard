@@ -1,59 +1,63 @@
-body{
-    width: 100%;
-    height: 100%;
+body {
+  width: 100%;
+  height: 100%;
 }
 
 .navbar-center {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
-#searchCol{
-    background: rgb(230, 240, 245);
-    height: calc(100vh - 72px);
-    padding: 15px;
+#searchCol {
+  background: rgb(230, 240, 245);
+  height: calc(100vh - 72px);
+  padding: 15px;
 }
-.searchItem{
-    margin-top: 10px;
+.searchItem {
+  margin-top: 10px;
 }
-.card{
-    margin-top: 15px;
-    display: flex;
+.card {
+  margin-top: 15px;
+  display: grid;
 }
-#low{
-    background-color: lime;
-    width: 100%;
+#low {
+  background-color: lime;
+  width: 100%;
 }
-#med{
-    background-color: yellow;
-    width: 100%;
+#med {
+  background-color: yellow;
+  width: 100%;
 }
-#high{
-    background-color: orange;
-    width: 100%;
+#high {
+  background-color: orange;
+  width: 100%;
 }
-#veryHigh{
-    background-color: red;
-    width: 100%;
+#veryHigh {
+  background-color: red;
+  width: 100%;
 }
-#extremelyHigh{
-    background-color: purple;
-    width: 100%; 
+#extremelyHigh {
+  background-color: purple;
+  width: 100%;
 }
-#fiveDayTitle{
-    padding-top: 10px;
+#fiveDayTitle {
+  padding-top: 10px;
 }
-.forecast1, .forecast2, .forecast3, .forecast4, .forecast5{
-    background: rgb(124, 203, 240);
-    color: white;
-    float: left;
-    margin: 5px 20px 0px 0px;
-    padding: 0px;
-    width: 100%;
+.forecast1,
+.forecast2,
+.forecast3,
+.forecast4,
+.forecast5 {
+  background: rgb(124, 203, 240);
+  color: white;
+  float: left;
+  margin: 5px 20px 0px 0px;
+  padding: 0px;
+  width: 100%;
 }
-p{
-    font-size: 12px;
+p {
+  font-size: 12px;
 }
-.searchItem{
-    text-transform: capitalize;
+.searchItem {
+  text-transform: capitalize;
 }
