@@ -17,7 +17,7 @@ $(document).ready(function () {
       historyBtn.on("click", function (event) {
         getCurrentWeather(event.target.innerText);
       });
-      historyEl.append(historyBtn);
+      historyEl.prepend(historyBtn);
     }
   }
   displayRecentList();
